@@ -1,0 +1,7 @@
+Server:  dns.google
+Address:  8.8.8.8
+
+Name:    openai.com
+Addresses:  104.18.33.45
+	  172.64.154.211
+
