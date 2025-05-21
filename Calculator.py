@@ -39,6 +39,22 @@ def sqrt_function(x):
         else:
             return(math.sqrt(x))
 
+def division_function(numerator, denominator):
+    try:
+        numerator = float(numerator)
+        denominator = float(denominator)
+    except (ValueError, KeyboardInterrupt):
+        print('A non-integer value has been entered')
+        return division_function(input('Enter a valid numerator: '), input('Enter valid denominator: '))
+    else:
+        try:
+            if int(denominator) == 0:
+                raise ZeroDivisionError('Cannot divide by zero')
+        except:
+            return division_function(numerator, input('Enter valid denominator: '))
+        else:
+            return (numerator / denominator)
+ 
 
 def main(query):
     formatter(query)

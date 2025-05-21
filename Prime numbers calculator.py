@@ -10,6 +10,6 @@ def main(limit):
                 factors_count += 1
         
         if factors_count == 2:
-            print(str(number) + " is a prime number.")
+            print(f"{number} is a prime number.")
 
-main(limit = int(input("To which number do you want to check for prime numbers: ")))
+main(limit = int(input("Maximum range you want to check for prime numbers: ")))

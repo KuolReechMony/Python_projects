@@ -13,6 +13,6 @@ def clock():
             m = 0
         
         time.sleep(1)
-        print((current_time[0]) + str(':') + str(current_time[1]) + ':')
+        print(f"{current_time[0]}:{current_time[1]}")
 
 clock()

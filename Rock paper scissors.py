@@ -53,9 +53,13 @@ def main(choices):
 
 while True:
     rounds = input("How many rounds do you want to play: ")
-    rounds = int(rounds)
-    for i in range(rounds):
-        print(main(inputs()))
-    
-    print(str((win_rate / rounds) * 100) + "%")
+    try:
+        rounds = int(rounds)
+    except (ValueError, KeyboardInterrupt):
+        rounds = input("How many rounds do you want to play: ")
+    else:
+        for i in range(rounds):
+            print(main(inputs()))
+    finally:
+        print(f"{(win_rate / rounds) * 100} %")
 
