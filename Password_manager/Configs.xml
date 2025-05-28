@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<configs>
+
+<config>
+<service>   </service>
+<email_or_username>    </email_or_username>
+<password_googlePasswords_Screenshots>   </password_googlePasswords_Screenshots>
+<backupEmail_phoneNumber>    </backupEmail_phoneNumber>
+<twoFactorAuthentication>   </twoFactorAuthentication>
+<permissions>   </permissions>
+</config>
+
+<config><service>github</service><email_or_username>gAAAAABoNNKp3VHRsyYpximpX8DCiTt4zmNEYZSb5aVrrda4MTXLlZfzxLNmittVk1xV8aD_nvZSSHL8YcbCAF0iCcbsswJChz9Ldxdinu-4qrI_4vPCSHw=</email_or_username><password_googlePasswords_Screenshots>gAAAAABoNNKwowxvwE_xhEclL9vQBFLzU38bD9DdXRu4mAZ6CVDuq4EnoZb1xSQKOr-ESi5gZLjcAD0CcgXgTbWkq9484lfAmA==</password_googlePasswords_Screenshots><backupEmail_phoneNumber>Phone</backupEmail_phoneNumber><twoFactorAuthentication>google</twoFactorAuthentication><permissions>gAAAAABoNNK1xgA5EusOCBok49opcxs3Taf5UvvHyWRlFuopyzCuQIyMvKwj13wGCI3KqxB3V3D4i03tACbs-zvta3MO__0n_w1ThyGTn9dqHtFYCrCemmG7F5Qkbtx0iXLbMutNiSwO</permissions></config></configs>

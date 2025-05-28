@@ -1,64 +1,88 @@
-import math
+import math, decimal, fractions
 
-symbols = ('+', '-', '*', '/', '%', '**')
+symbols = ('(', ')', '/', '*', '+', '-') # BODMAS
+complex_sysmbols = ('!', '|')
+Answer = 0
+pos = []
 
-memory = []
+formatted_question = []
 
-def formatter(question):
-    x = 0
-    for i in range(len(question)):
-        if question[i] in symbols and i != len(question):
-            memory.append(question[x:i])
-            memory.append(question[i])
-            x = i+1
-        elif question[i] in symbols and i == len(question):
-            memory.append(question[x:])
-        
-    memory.append(question[x:])
+def formatter():
+    pass
 
+def addition(num_1, num_2):
+    return num_1 + num_2
 
-def power_functions(memory):
-    for i in range(len(memory)):
-        if memory[i] == symbols[-1]:
-            x = memory[i-1]
-            y = memory[i+1]
-        pass
+def subtraction(num_1, num_2):
+    return num_1 - num_2
 
-def sqrt_function(x):
+def multiplication(num_1, num_2):
+    return num_1 * num_2
+
+def division(num_1, num_2):
+    match num_2:
+        case 0:
+            return ZeroDivisionError
+        case _:
+            return num_1/num_2
+
+def nth_power(num_1, power):
+    return math.pow(num_1, power)
+
+def nth_root(num_1, root):
+    pass
+
+def factorial(num_1):
+    return 
+
+def Get_question():
+    global Answer, symbols
     try:
-        x = int(x)
+        question = input("Question: ")
+        placeholder = 0
+        num_1 = 0
+        num_2 = 0
+        for x in range(len(question)):
+            try:
+                int(question[x])
+                placeholder += 1
+            except ValueError:
+                if question[x] in symbols:
+                    num_1 = question[x-placeholder:x], question[x]
+                    placeholder = 0
+    except KeyboardInterrupt:
+        print("Enter 'exit()' to exit!")
+
+
+# Get_question()
+
+
+ques = input("Question: ")
+p = 0
+for x in range(len(ques)):
+    try:
+        int(ques[x])
+        p += 1
     except ValueError:
-        print('None interger input')
-        return None
+        if ques[x] in symbols:
+            pos.append([x, ques[x]])
+            p = 0
+
+for i in range(len(pos)):
+    if i < 1:
+        data = pos[i]
+        upper = pos[i+1][0]
+        print(upper)
     else:
-        try:
-            if x < 0:
-                raise Exception('Positive number only')
-        except:
-            print('Negative number')
-        else:
-            return(math.sqrt(x))
+        data = pos[i]
+        upper = pos[i+1][0]-pos[i-1][0]
+        print(upper)
+    
 
-def division_function(numerator, denominator):
-    try:
-        numerator = float(numerator)
-        denominator = float(denominator)
-    except (ValueError, KeyboardInterrupt):
-        print('A non-integer value has been entered')
-        return division_function(input('Enter a valid numerator: '), input('Enter valid denominator: '))
-    else:
-        try:
-            if int(denominator) == 0:
-                raise ZeroDivisionError('Cannot divide by zero')
-        except:
-            return division_function(numerator, input('Enter valid denominator: '))
-        else:
-            return (numerator / denominator)
- 
 
-def main(query):
-    formatter(query)
 
-main(input('Any math problem: '))
-
-print(memory)
+'''match data[1]:
+        case '+':
+            print(ques[:])
+        case '-':
+            pass'''
