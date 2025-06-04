@@ -1,14 +1,8 @@
-import math, decimal, fractions
+import math
 
-symbols = ('(', ')', '/', '*', '+', '-') # BODMAS
-complex_sysmbols = ('!', '|')
-Answer = 0
-pos = []
+symbols = ('/', '*', '+', '-') # BODMAS
 
-formatted_question = []
-
-def formatter():
-    pass
+question = []
 
 def addition(num_1, num_2):
     return num_1 + num_2
@@ -30,59 +24,54 @@ def nth_power(num_1, power):
     return math.pow(num_1, power)
 
 def nth_root(num_1, root):
-    pass
+    return num_1 ** (1/root)
 
 def factorial(num_1):
-    return 
+    return math.factorial(num_1)
 
-def Get_question():
-    global Answer, symbols
-    try:
-        question = input("Question: ")
-        placeholder = 0
-        num_1 = 0
-        num_2 = 0
-        for x in range(len(question)):
-            try:
-                int(question[x])
-                placeholder += 1
-            except ValueError:
-                if question[x] in symbols:
-                    num_1 = question[x-placeholder:x], question[x]
-                    placeholder = 0
-    except KeyboardInterrupt:
-        print("Enter 'exit()' to exit!")
+def bodmas(question):
+    length = len(question)
+    for i in range(len(question)):
+        if i < 1:
+            pass
+        elif i+1 > length:
+            pass
+        else:
+            if question[i] in symbols:
+                match (question[i]):
+                    case "/":
+                        question[i] = division(int(question[i-1]), int(question[i+1]))
+                        question.pop(i-1)
+                        question.pop(i+1)
+                    case "*":
+                        if int(int(question[i-1])) or int(int(question[i+1])) == 0:
+                            question[i] = 0
+                            question.pop(i-1)
+                            question.pop(i+1)
+                        else:
+                            question[i] = multiplication(int(question[i-1]), int(question[i+1]))
+                            question.pop(i-1)
+                            question.pop(i+1)
+                    case "+":
+                        question[i] = addition(int(question[i-1]), int(question[i+1]))
+                        question.pop(i-1)
+                        question.pop(i+1)
+                    case "-":
+                        question[i] = subtraction(int(question[i-1]), int(question[i+1]))
+                        question.pop(i-1)
+                        question.pop(i+1)
 
+def Get_Question():
+    global question
+    x = input("Math problem:  ")
+    index = 0
+    for i in range(len(x)):
+        if x[i] in symbols:
+            question.append(x[index:i])
+            question.append(x[i])
+            index = i+1
+    bodmas(question)
 
-# Get_question()
-
-
-ques = input("Question: ")
-p = 0
-for x in range(len(ques)):
-    try:
-        int(ques[x])
-        p += 1
-    except ValueError:
-        if ques[x] in symbols:
-            pos.append([x, ques[x]])
-            p = 0
-
-for i in range(len(pos)):
-    if i < 1:
-        data = pos[i]
-        upper = pos[i+1][0]
-        print(upper)
-    else:
-        data = pos[i]
-        upper = pos[i+1][0]-pos[i-1][0]
-        print(upper)
-    
-
-
-
-'''match data[1]:
-        case '+':
-            print(ques[:])
-        case '-':
-            pass'''
+for i in range(4):
+    Get_Question()
+    print(question)

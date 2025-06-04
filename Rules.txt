@@ -1,1 +1,0 @@
-Server:dns.google;Address:8.8.8.8;Name:chatgpt.com;Addresses:2606:4700:4400::ac40:9bd1;2606:4700:4400::6812:202f;104.18.32.47;172.64.155.209;;;
