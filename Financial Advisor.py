@@ -41,6 +41,7 @@ def DateAndTime():
 
 def CreateReccuringPayment():
     try:
+        Service = input("Subscription:  ")
         Cost = int(input("Reccurying cost:  "))
         StartDate = int(input("Earliest payment date:  "))
         EndDate = int(input("Latest payment date:  "))
@@ -50,9 +51,18 @@ def CreateReccuringPayment():
     else:
         match (Automated):
             case 0:
-                Subscriptions.append([Cost, [StartDate, EndDate], False])
+                Subscriptions[Service] = [Cost, [StartDate, EndDate], False]
             case 1:
-                Subscriptions.append([Cost, [StartDate, EndDate], True])
+                Subscriptions[Service] = [Cost, [StartDate, EndDate], True]
 
-def RemoveReccuringPayment():
-    pass
+def AccessRecurringPaymeny(service):
+    return f"Subscription->{service}; cost->{Subscriptions[service][0]}; Due on->{Subscriptions[service][0][1]}; AutoPayment->{Subscriptions[service][2]}"
+
+
+def RemoveReccuringPayment(service):
+    confirm = input(f"Verifying the deletion of this subscription->{service}; that costs->{Subscriptions[service][0]}")
+    if confirm.lower() == "yes":
+        Subscriptions.pop(service)
+
+
+print(CreateReccuringPayment())

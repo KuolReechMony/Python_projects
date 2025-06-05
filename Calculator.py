@@ -3,6 +3,7 @@ import math
 symbols = ('/', '*', '+', '-') # BODMAS
 
 question = []
+questionOrder = []
 
 def addition(num_1, num_2):
     return num_1 + num_2
@@ -30,48 +31,93 @@ def factorial(num_1):
     return math.factorial(num_1)
 
 def bodmas(question):
-    length = len(question)
-    for i in range(len(question)):
-        if i < 1:
-            pass
-        elif i+1 > length:
-            pass
-        else:
-            if question[i] in symbols:
-                match (question[i]):
+    counter = 1
+    while counter < len(question):
+        questionOrder.append(question[counter-1:counter+2])
+        counter += 2
+
+    for i in range(len(questionOrder)):
+        if i == 0:
+            if question[i][0] == "/":
+                match (questionOrder[i][1]):
                     case "/":
-                        question[i] = division(int(question[i-1]), int(question[i+1]))
-                        question.pop(i-1)
-                        question.pop(i+1)
+                        questionOrder.pop[i+1][0] = division(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
                     case "*":
-                        if int(int(question[i-1])) or int(int(question[i+1])) == 0:
-                            question[i] = 0
-                            question.pop(i-1)
-                            question.pop(i+1)
+                        if int(int(questionOrder[i][0])) or int(int(questionOrder[i][2])) == 0:
+                            questionOrder[i+1][0] = 0
+                            questionOrder.pop(i)
                         else:
-                            question[i] = multiplication(int(question[i-1]), int(question[i+1]))
-                            question.pop(i-1)
-                            question.pop(i+1)
+                            questionOrder[i+1][0] = multiplication(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                            questionOrder.pop(i)
                     case "+":
-                        question[i] = addition(int(question[i-1]), int(question[i+1]))
-                        question.pop(i-1)
-                        question.pop(i+1)
+                        questionOrder[i+1][0] = addition(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
                     case "-":
-                        question[i] = subtraction(int(question[i-1]), int(question[i+1]))
-                        question.pop(i-1)
-                        question.pop(i+1)
+                        questionOrder[i+1][0] = subtraction(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+
+
+            elif i+1 == len(questionOrder):
+                match (questionOrder[i][1]):
+                    case "/":
+                        questionOrder[i-1][2] = division(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+                    case "*":
+                        if int(int(questionOrder[i][0])) or int(int(questionOrder[i][2])) == 0:
+                            questionOrder[i-1][2] = 0
+                            questionOrder.pop(i)
+                        else:
+                            questionOrder[i-1][2] = multiplication(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                            questionOrder.pop(i)
+                    case "+":
+                        questionOrder[i-1][2] = addition(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+                    case "-":
+                        questionOrder[i-1][2] = subtraction(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+
+            else:
+                match (questionOrder[i][1]):
+                    case "/":
+                        questionOrder[i-1][2] = division(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop[i+1][0] = division(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+                    case "*":
+                        if int(int(questionOrder[i][0])) or int(int(questionOrder[i][2])) == 0:
+                            questionOrder[i-1][2] = 0
+                            questionOrder[i+1][0] = 0
+                            questionOrder.pop(i)
+                        else:
+                            questionOrder[i-1][2] = multiplication(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                            questionOrder[i+1][0] = multiplication(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                            questionOrder.pop(i)
+                    case "+":
+                        questionOrder[i-1][2] = addition(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder[i+1][0] = addition(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+                    case "-":
+                        questionOrder[i-1][2] = subtraction(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder[i+1][0] = subtraction(int(questionOrder[i][0]), int(questionOrder[i][2]))
+                        questionOrder.pop(i)
+
+        print(questionOrder)
+
 
 def Get_Question():
     global question
     x = input("Math problem:  ")
     index = 0
+    last = 0
     for i in range(len(x)):
         if x[i] in symbols:
             question.append(x[index:i])
             question.append(x[i])
-            index = i+1
+            index = i + 1
+            last = i +1
+    
+    question.append(x[last:])
     bodmas(question)
 
-for i in range(4):
-    Get_Question()
-    print(question)
+
+
